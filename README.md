@@ -70,6 +70,8 @@ Get key: [Groq Console](https://console.groq.com/dashboard/metrics)
 
 [View Collection](https://planetary-firefly-68128.postman.co/workspace/ReactNode-Sandbox~f0fb762f-6a16-475c-9fa3-136a687c5fa0/collection/30161518-dab7ee28-f04f-4e25-b0ef-d105b4765683?action=share&creator=30161518)
 
+
+### Deployed Link : https://leadmind-ai.onrender.com/
 ---
 
 ### 👨‍💻 Author
