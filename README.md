@@ -77,15 +77,23 @@ Get key: [Groq Console](https://console.groq.com/dashboard/metrics)
 ### Deployed Link : https://leadmind-ai.onrender.com/
 ---
 
-### Postman Screenshots 
+### Screenshots of API calls and Responses.
 
 <img width="1368" height="912" alt="Screenshot 2025-10-30 145710" src="https://github.com/user-attachments/assets/68ace354-bdbb-4b21-953a-1be4b9babf92" />
 
+---
+
 <img width="1382" height="868" alt="Screenshot 2025-10-30 145728" src="https://github.com/user-attachments/assets/b9e54c6f-829f-4562-ae90-3e1de08fd34f" />
+
+---
 
 <img width="1391" height="871" alt="Screenshot 2025-10-30 145753" src="https://github.com/user-attachments/assets/d05e2597-e13f-4520-9738-96c50d959a3d" />
 
+---
+
 <img width="1375" height="882" alt="Screenshot 2025-10-30 145828" src="https://github.com/user-attachments/assets/d8cfe528-749e-4929-aff8-c6830543df87" />
+
+
 
 ---
 
