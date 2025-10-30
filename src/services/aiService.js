@@ -1,6 +1,7 @@
 import Groq from "groq-sdk";
-
-const groq = new Groq({ apiKey: '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' });
+import dotenv from "dotenv";
+dotenv.config();
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 export const getAIIntent = async (lead, offer) => {
   try {
