@@ -1,4 +1,5 @@
 import fs from "fs";
+import { Parser } from "json2csv";
 
 import path from "path";
 import { fileURLToPath } from "url";
@@ -80,10 +81,32 @@ export const scoreLeads = async (req, res) => {
 
 export const getScoreLeads = async (req, res) => {
   try {
-        const resultsPath = path.join(__dirname, "../data/results.json");
-    const rawOffers = JSON.parse(
-      fs.readFileSync(resultsPath, "utf-8")
-    );
+    const resultsPath = path.join(__dirname, "../data/results.json");
+
+    if (!fs.existsSync(resultsPath)) {
+      return res.status(404).json({
+        success: false,
+        message: "results.json not found",
+      });
+    }
+
+    const fileContent = fs.readFileSync(resultsPath, "utf-8").trim();
+
+    if (!fileContent) {
+      return res.status(400).json({
+        success: false,
+        message: "results is empty",
+      });
+    }
+
+    const rawOffers = JSON.parse(fileContent);
+
+    if (!Array.isArray(rawOffers) || rawOffers.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "results.json contains no data",
+      });
+    }
 
     res.status(200).json({
       success: true,
@@ -99,3 +122,36 @@ export const getScoreLeads = async (req, res) => {
   }
 };
 
+export const exportScoreLeads = async (req, res) => {
+  try {
+    console.log("Exporting scored leads to CSV...");
+
+    const resultsPath = path.join(__dirname, "../data/results.json");
+
+    if (!fs.existsSync(resultsPath)) {
+      return res.status(404).json({ message: "results.json not found" });
+    }
+
+    const fileContent = fs.readFileSync(resultsPath, "utf-8").trim();
+
+    if (!fileContent) {
+      return res.status(400).json({ message: "result is empty" });
+    }
+
+    const results = JSON.parse(fileContent);
+
+    if (!Array.isArray(results) || results.length === 0) {
+      return res.status(400).json({ message: "No data available to export" });
+    }
+
+    const json2csvParser = new Parser();
+    const csv = json2csvParser.parse(results);
+
+    res.header("Content-Type", "text/csv");
+    res.attachment("results.csv");
+    return res.send(csv);
+  } catch (error) {
+    console.error("Error exporting CSV:", error);
+    res.status(500).json({ message: "Error exporting CSV", error: error.message });
+  }
+};
